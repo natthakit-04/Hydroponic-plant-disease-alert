@@ -1,78 +1,46 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แนะนำตัว - มาริซ่า</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
-            margin: 0;
-            padding: 0;
-        }
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import NotFound from "@/pages/NotFound";
+import { Route, Switch } from "wouter";
+import ErrorBoundary from "./components/ErrorBoundary";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import Dashboard from "./pages/Dashboard";
+import Plots from "./pages/Plots";
+import PlotDetail from "./pages/PlotDetail";
+import PlantMap from "./pages/PlantMap";
+import PlantDetail from "./pages/PlantDetail";
+import Analyze from "./pages/Analyze";
+import History from "./pages/History";
+import Reports from "./pages/Reports";
 
-        .container {
-            max-width: 700px;
-            margin: 50px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            text-align: center;
-        }
+function Router() {
+  return (
+    <Switch>
+      <Route path="/" component={Dashboard} />
+      <Route path="/plots" component={Plots} />
+      <Route path="/plots/:id" component={PlotDetail} />
+      <Route path="/plant-map" component={PlantMap} />
+      <Route path="/plants/:id" component={PlantDetail} />
+      <Route path="/analyze" component={Analyze} />
+      <Route path="/history" component={History} />
+      <Route path="/reports" component={Reports} />
+      <Route path="/404" component={NotFound} />
+      <Route component={NotFound} />
+    </Switch>
+  );
+}
 
-        img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid pink;
-        }
+function App() {
+  return (
+    <ErrorBoundary>
+      <ThemeProvider defaultTheme="dark">
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
+  );
+}
 
-        h1 {
-            color: #ff69b4;
-        }
-
-        p {
-            font-size: 18px;
-            color: #444;
-        }
-
-        .hobby {
-            background: #fff0f5;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 10px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <img src="https://via.placeholder.com/180" alt="รูปโปรไฟล์">
-
-        <h1>สวัสดีค่ะ ฉันชื่อ มาริซ่า</h1>
-
-        <p>
-            ยินดีต้อนรับสู่เว็บไซต์แนะนำตัวของฉัน
-        </p>
-
-        <div class="hobby">
-            <h3>📚 งานอดิเรก</h3>
-            <p>อ่านหนังสือ ฟังเพลง และดูหนัง</p>
-        </div>
-
-        <div class="hobby">
-            <h3>🎯 สิ่งที่สนใจ</h3>
-            <p>เทคโนโลยี การเรียนรู้ และการออกแบบเว็บไซต์</p>
-        </div>
-
-        <div class="hobby">
-            <h3>📧 ติดต่อ</h3>
-            <p>marisa@example.com</p>
-        </div>
-    </div>
-
-</body>
-</html>
+export default App;
