@@ -1,26 +1,206 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HydroGuard AI</title>
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>{{project_title}}</title>    
-    <!-- THIS IS THE START OF A COMMENT BLOCK, BLOCK TO BE DELETED: Google Fonts here, example:
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    THIS IS THE END OF A COMMENT BLOCK, BLOCK TO BE DELETED -->
-  </head>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
-  </body>
+body{
+    background:#f5f7fa;
+    color:#333;
+    padding:20px;
+}
 
+header{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+h1{
+    color:#2563eb;
+}
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.map{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.plant-grid{
+    display:grid;
+    grid-template-columns:repeat(5,70px);
+    gap:15px;
+    margin-top:20px;
+}
+
+.plant{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-weight:bold;
+}
+
+.healthy{
+    background:#22c55e;
+}
+
+.disease{
+    background:#2563eb;
+}
+
+.harvest{
+    background:#9333ea;
+}
+
+.info{
+    margin-top:20px;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌱 HydroGuard AI</h1>
+    <p>ระบบตรวจจับและเตือนภัยโรคพืชในแปลงผักไฮโดรโปนิกส์</p>
+</header>
+
+<div class="dashboard">
+    <div class="card">
+        <h2>120</h2>
+        <p>ต้นทั้งหมด</p>
+    </div>
+
+    <div class="card">
+        <h2>8</h2>
+        <p>ต้นติดโรค</p>
+    </div>
+
+    <div class="card">
+        <h2>35</h2>
+        <p>พร้อมเก็บเกี่ยว</p>
+    </div>
+
+    <div class="card">
+        <h2>12,540 ฿</h2>
+        <p>มูลค่ารวม</p>
+    </div>
+</div>
+
+<div class="map">
+    <h2>📍 แผนที่แปลงผัก</h2>
+
+    <div class="plant-grid">
+
+        <div class="plant healthy">1</div>
+        <div class="plant healthy">2</div>
+        <div class="plant disease">3</div>
+        <div class="plant healthy">4</div>
+        <div class="plant harvest">5</div>
+
+        <div class="plant healthy">6</div>
+        <div class="plant healthy">7</div>
+        <div class="plant disease">8</div>
+        <div class="plant healthy">9</div>
+        <div class="plant healthy">10</div>
+
+        <div class="plant harvest">11</div>
+        <div class="plant healthy">12</div>
+        <div class="plant healthy">13</div>
+        <div class="plant disease">14</div>
+        <div class="plant healthy">15</div>
+
+    </div>
+
+    <br>
+
+    <p>🟢 ปกติ | 🔵 ติดโรค | 🟣 พร้อมเก็บเกี่ยว</p>
+</div>
+
+<div class="info">
+    <h2>📊 รายละเอียดผัก</h2>
+
+    <table>
+        <tr>
+            <th>ต้นที่</th>
+            <th>ชนิดผัก</th>
+            <th>สถานะ</th>
+            <th>ราคา</th>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td>กรีนโอ๊ค</td>
+            <td>โรคราน้ำค้าง</td>
+            <td>120 บาท/กก.</td>
+        </tr>
+
+        <tr>
+            <td>5</td>
+            <td>คอส</td>
+            <td>พร้อมเก็บเกี่ยว</td>
+            <td>110 บาท/กก.</td>
+        </tr>
+
+        <tr>
+            <td>14</td>
+            <td>เรดโอ๊ค</td>
+            <td>โรคใบจุด</td>
+            <td>140 บาท/กก.</td>
+        </tr>
+
+    </table>
+</div>
+
+<script>
+alert("🌱 HydroGuard AI พร้อมทำงาน");
+</script>
+
+</body>
 </html>
